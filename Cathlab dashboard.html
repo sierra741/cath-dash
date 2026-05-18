@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Google Sheet</title>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .iframe-container {
+      width: 100%;
+      height: 100vh;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="iframe-container">
+    <iframe
+      id="sheetFrame"
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3NwiMgAHvR8VBofvApI_PeMPZ4Kq51kaDlY4Nx6Z04K1pBtKlJX1TsFPcadVSsL6SslE5psOeuc3e/pubhtml?widget=true&headers=false">
+    </iframe>
+  </div>
+
+  <script>
+    // Refresh iframe every 30 seconds
+    setInterval(() => {
+      const frame = document.getElementById("sheetFrame");
+      frame.src = frame.src.split('&refresh=')[0] + '&refresh=' + new Date().getTime();
+    }, 30000); // 30000ms = 30 seconds
+  </script>
+
+</body>
+</html>
